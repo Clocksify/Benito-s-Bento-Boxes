@@ -1,0 +1,7 @@
+from Crypto.Cipher import AES 
+from Crypto import Random
+
+with open("file1.txt", "r") as plaintext:
+    plaintext = bytes(plaintext.read() , 'utf-8')
+    plaintext_lines = plaintext.splitlines()
+
