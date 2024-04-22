@@ -1,9 +1,7 @@
 from Crypto.Cipher import AES 
 from Crypto import Random
-import chardet
 from Crypto.Hash import SHA256
 import json
-from Crypto.Cipher import AES
 from Crypto.Util.Padding import unpad
 
 with open("my key.txt", "r") as secrets_file:
@@ -23,41 +21,38 @@ EQ_to_EQR_dict = {}
 
 for i in range(1, 4):
     with open(f"attr{i}.txt") as name:
-        name = bytes(f"attr{i}".read() , 'utf-8')
+        name = f"attr{i}".encode('utf-8')
         hash = SHA256.new(data = name)
         hash_attr = hash.hexdigest()
-        print(f"hash_attr{i}")
+        print (hash_attr)
 
     for i in range(1, 4):
         with open(f"file{i}.txt", "r") as name:
-            file_lines = bytes(f"file{i}".read() , 'utf-8').splitlines()
-            enc_file = engine.encrypt(f"file{i}")
-            enc_decoded = enc_file.decode('utf-8')
-            print(hash_key)
-
+            file_bytes = f"file{i}".encode('utf-8')
+            enc_file = engine.encrypt(file_bytes)
+            enc_file = str(enc_file)
+            print (enc_file)
             file_list = []
 
-            if hash_attr in enc_decoded: 
-                file_list.append(str(enc_decoded))
+            if hash_attr in enc_file: 
+                file_list.append(str(enc_file))
     
     EQ_to_EQR_dict[hash_attr] = file_list
 
 
-s = input("What is your starting range? ")
+s = int(input("What is your starting range? "))
 
-e = input("What is your ending range? ")
+e = int(input("What is your ending range? "))
 
 for i in range(s-1, e):
-    EQR = EQ_to_EQR_dict.values()[i]
-    for i in range(len[EQR]):
+    EQR = list(EQ_to_EQR_dict.values())[i]
+    for i in range(len(EQR)):
         plaintext = unpad(engine.decrypt(EQR[i]), AES.block_size)
         print(plaintext)
         print("\n")
 
-# Expected output is Password123 with 0s added at the end until the object is 32 bytes long
-
-#Expected outputs for hash_attr1,2 and 3 are separate and unique 32 byte long digests
-
 
 with open("EQ_to_EQR_dict.json", "w") as EQ_to_EQR_dict_dest:
     EQ_to_EQR_dict = EQ_to_EQR_dict_dest.write(json.dumps(EQ_to_EQR_dict))
+#Expected output is a json file EQ_to_EQR_dict.json where there are 3 separate 32 byte hashes that are attr1,2 and 3 respectively
+#However, no files are in the json file's dictionary output
