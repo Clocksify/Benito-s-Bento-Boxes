@@ -31,11 +31,11 @@ for i in range(1, 4):
     EQ_to_EQR_dict[hash_attr] = []
     for i in range(1, 4):
         with open(f"file{i}.txt", "r") as name:
-            file_bytes = f"file{i}".encode('utf-8')
+            ciphertext = e_cipher.encrypt(pad(f"file{i}" AES.block_size))
 
             # change to if hash_atr in file_bytes with proper use case
-            if file_bytes not in EQ_to_EQR_dict[hash_attr]: 
-                EQ_to_EQR_dict[hash_attr].append(file_bytes)
+            if ciphertext not in EQ_to_EQR_dict[hash_attr]: 
+                EQ_to_EQR_dict[hash_attr].append(ciphertext)
         
         print(EQ_to_EQR_dict)
 
@@ -46,8 +46,7 @@ e = int(input("What is your ending range? "))
 for i in range(s-1, e):
     EQR = list(EQ_to_EQR_dict.values())[i]
     for i in range(len(EQR)):
-        ciphertext=e_cipher.encrypt(pad(EQR[i], AES.block_size))
-        plaintext = unpad(d_cipher.decrypt(ciphertext), AES.block_size)
+        plaintext = unpad(d_cipher.decrypt(EQR[i]), AES.block_size)
 
 # convert all items in dictionary to str
 EQ_to_EQR_dict_final = {}
