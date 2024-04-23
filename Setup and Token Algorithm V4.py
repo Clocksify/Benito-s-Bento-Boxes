@@ -22,20 +22,16 @@ d_cipher = AES.new(hash_key, AES.MODE_CTR, nonce = iv)
 EQ_to_EQR_dict = {}
 
 for i in range(1, 4):
-    with open(f"attr{i}.txt") as name:
-        name = f"attr{i}".encode('utf-8')
-        hash = SHA256.new(data = name)
-        hash_attr = hash.hexdigest()
-        #print(hash_attr)
+    hash = SHA256.new(data = bytes(str(i), 'utf-8'))
+    hash_attr = hash.hexdigest()
+    with open(f"file{i}.txt", "r") as name:
+        ciphertext = e_cipher.encrypt(pad(name, AES.block_size))
     
     EQ_to_EQR_dict[hash_attr] = []
-    for i in range(1, 4):
-        with open(f"file{i}.txt", "r") as name:
-            ciphertext = e_cipher.encrypt(pad(f"file{i}", AES.block_size))
 
             # change to if hash_atr in file_bytes with proper use case
-            if ciphertext not in EQ_to_EQR_dict[hash_attr]: 
-                EQ_to_EQR_dict[hash_attr].append(ciphertext)
+        if ciphertext not in EQ_to_EQR_dict[hash_attr]: 
+            EQ_to_EQR_dict[hash_attr].append(ciphertext)
         
         print(EQ_to_EQR_dict)
 
