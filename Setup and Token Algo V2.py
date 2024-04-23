@@ -35,7 +35,7 @@ for i in range(1, 4):
             file_list = []
 
             if hash_attr in enc_file: 
-                file_list.append(str(enc_file))
+                file_list.append(enc_file)
     
     EQ_to_EQR_dict[hash_attr] = file_list
 
