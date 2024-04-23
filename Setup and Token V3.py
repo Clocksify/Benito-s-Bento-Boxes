@@ -46,11 +46,8 @@ e = int(input("What is your ending range? "))
 for i in range(s-1, e):
     EQR = list(EQ_to_EQR_dict.values())[i]
     for i in range(len(EQR)):
-        print(EQR[i])
         ciphertext=e_cipher.encrypt(pad(EQR[i], AES.block_size))
         plaintext = unpad(d_cipher.decrypt(ciphertext), AES.block_size)
-        print(plaintext)
-        print("\n")
 
 # convert all items in dictionary to str
 EQ_to_EQR_dict_final = {}
