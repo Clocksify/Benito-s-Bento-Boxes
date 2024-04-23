@@ -31,7 +31,7 @@ for i in range(1, 4):
     EQ_to_EQR_dict[hash_attr] = []
     for i in range(1, 4):
         with open(f"file{i}.txt", "r") as name:
-            ciphertext = e_cipher.encrypt(pad(f"file{i}" AES.block_size))
+            ciphertext = e_cipher.encrypt(pad(f"file{i}", AES.block_size))
 
             # change to if hash_atr in file_bytes with proper use case
             if ciphertext not in EQ_to_EQR_dict[hash_attr]: 
