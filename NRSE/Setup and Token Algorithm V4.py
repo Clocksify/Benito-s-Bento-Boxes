@@ -24,16 +24,15 @@ EQ_to_EQR_dict = {}
 for i in range(1, 4):
     hash = SHA256.new(data = bytes(str(i), 'utf-8'))
     hash_attr = hash.hexdigest()
-    with open(f"file{i}.txt", "r") as name:
+    with open(f"NRSE/file{i}.txt", "r") as name:
         ciphertext = e_cipher.encrypt(pad(name, AES.block_size))
     
     EQ_to_EQR_dict[hash_attr] = []
 
             # change to if hash_atr in file_bytes with proper use case
-        if ciphertext not in EQ_to_EQR_dict[hash_attr]: 
+if ciphertext not in EQ_to_EQR_dict[hash_attr]: 
             EQ_to_EQR_dict[hash_attr].append(ciphertext)
-        
-        print(EQ_to_EQR_dict)
+            print(EQ_to_EQR_dict)
 
 s = int(input("What is your starting range? "))
 
@@ -55,7 +54,7 @@ for key, value in EQ_to_EQR_dict.items():
     EQ_to_EQR_dict_final[str_key] = str_list
 
 print(EQ_to_EQR_dict_final)
-with open("EQ_to_EQR_dict.json", "w") as EQ_to_EQR_dict_dest:
+with open("NRSE/EQ_to_EQR_dict.json", "w") as EQ_to_EQR_dict_dest:
     EQ_to_EQR_dict_final = EQ_to_EQR_dict_dest.write(json.dumps(EQ_to_EQR_dict_final))
 #Expected output is a json file EQ_to_EQR_dict.json where there are 3 separate 32 byte hashes that are attr1,2 and 3 respectively
 #However, no files are in the json file's dictionary output

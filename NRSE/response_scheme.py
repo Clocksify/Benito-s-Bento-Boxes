@@ -1,9 +1,11 @@
 import json
 
-with open('Encrypted_data.json','r') as f:
+with open('NRSE/Encrypted_data.json','r') as f:
     dic = json.load(f)
 
-with open("Encrypted_query.txt", "r") as j:
+print (dic)
+
+with open("NRSE/Encrypted_query.txt", "r") as j:
     Encrypted_query = j.readlines()
     print(Encrypted_query)
     for line in Encrypted_query:
