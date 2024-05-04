@@ -8,6 +8,7 @@ print (dic)
 with open("NRSE/Encrypted_query.txt", "r") as j:
     Encrypted_query = j.readlines()
     print(Encrypted_query)
+    print (type(Encrypted_query))
     for line in Encrypted_query:
         For_real = line.strip()
-        open("Response.txt","a").write(dic[For_real] + '\n')
+        open("Response.txt","w").write(dic[For_real] + '\n')
