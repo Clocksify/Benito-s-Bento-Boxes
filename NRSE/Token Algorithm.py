@@ -1,9 +1,4 @@
-from Crypto.Cipher import AES 
-from Crypto import Random
 from Crypto.Hash import SHA256
-import json
-from Crypto.Util.Padding import unpad
-from Crypto.Util.Padding import pad
 
 with open("my key.txt", "r") as secrets_file:
     key = secrets_file.readline().strip().encode('utf-8')
@@ -18,12 +13,16 @@ s = int(input("What is your starting range? "))
 
 e = int(input("What is your ending range? "))
 
-e_cipher = AES.new(hash_key, AES.MODE_CTR, nonce = iv)
-d_cipher = AES.new(hash_key, AES.MODE_CTR, nonce = iv)
+Encrypted_query = []
+print (type (Encrypted_query))
 
-EQ_to_EQR_dict = {}
+for j in range(s-1, e):
+        hash = SHA256.new(data = bytes(str(j), 'utf-8'))
+        Encrypted_query_item = hash.hexdigest()
+        print (Encrypted_query_item)
+        Encrypted_query.append(Encrypted_query_item)
 
-for i in range(s-1, e):
-    EQR = list(EQ_to_EQR_dict.values())[i]
-    for i in range(len(EQR)):
-        plaintext = unpad(d_cipher.decrypt(EQR[i]), AES.block_size)
+print (Encrypted_query)
+with open("NRSE/Encrypted_query.txt", "w") as Encrypted_query_dest:
+        Encrypted_query_dest.writelines(Encrypted_query)
+# with open("Benito-s-Bento-Boxes/NRSE/Encrypted_query.txt", "w") as EQ_to_EQR_dict_dest:
