@@ -20,7 +20,7 @@ for j in range(s-1, e):
         hash = SHA256.new(data = bytes(str(j), 'utf-8'))
         Encrypted_query_item = hash.hexdigest()
         print (Encrypted_query_item)
-        Encrypted_query.append(Encrypted_query_item)
+        Encrypted_query.append(Encrypted_query_item + '\n')
 
 print (Encrypted_query)
 with open("NRSE/Encrypted_query.txt", "w") as Encrypted_query_dest:
