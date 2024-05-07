@@ -1,10 +1,4 @@
 from Crypto.Cipher import AES 
-from Crypto import Random
-from Crypto.Hash import SHA256
-import json
-from Crypto.Util.Padding import unpad
-from Crypto.Util.Padding import pad
-import re
 
 with open("Benito-s-Bento-Boxes/my key.txt", "r") as secrets_file:
     key = secrets_file.readline().strip().encode('utf-8')
