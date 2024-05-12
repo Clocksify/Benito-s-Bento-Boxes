@@ -9,14 +9,14 @@ with open("Benito-s-Bento-Boxes/my_key.txt", "r") as secrets_file:
     if len(key) > 32:
         hash_key = key [:32]
 
-s = int(input("What is your starting range? "))
+start_int = int(input("What is your starting range? "))
 
-e = int(input("What is your ending range? "))
+end_int = int(input("What is your ending range? "))
 
 Encrypted_query = []
 print (type (Encrypted_query))
 
-for j in range(s, e+1):
+for j in range(start_int, end_int+1):
         hash = SHA256.new(data = bytes(str(j), 'utf-8'))
         Encrypted_query_item = hash.hexdigest()
         print (Encrypted_query_item)
