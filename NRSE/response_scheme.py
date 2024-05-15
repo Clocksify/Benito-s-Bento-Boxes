@@ -11,7 +11,8 @@ with open("Benito-s-Bento-Boxes/NRSE/Encrypted_query.txt", "r") as j:
     for line in Encrypted_query:
         For_real = line.strip()
         Response = dic[For_real]
-        for lines in Response:
+        Response_list.append(Response)
+        for lines in Response_list:
             Response1 = lines.strip()
             open('Benito-s-Bento-Boxes/NRSE/Response.txt',"a").write((Response1))
             open('Benito-s-Bento-Boxes/NRSE/Response.txt',"a").write('\n')
