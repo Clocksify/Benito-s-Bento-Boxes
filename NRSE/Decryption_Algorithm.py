@@ -27,7 +27,8 @@ with open("Benito-s-Bento-Boxes/NRSE/Response.txt") as j:
       Creamer = Cream.decode('unicode-escape').encode('ISO-8859-1')
       Answer = d_cipher.decrypt(Creamer)
       print(Answer)
-      g.write(str(Answer)+'\n')
+      my_ans = str(Answer)[2:-1]
+      g.write(my_ans+'\n')
 #b'\xed*V\x9fk\x97\xd0\x16\xbdq\xab~\xd9v\xab"y\x98\x95\xb5\xd3\\\xba'
 #b'\\xed*V\\x9fk\\x97\\xd0\\x16\\xbdq\\xab~\\xd9v\\xab"y\\x98\\x95\\xb5\\xd3\\\\\\xba'
 #b'\\xed*V\\x9fk\\x97\\xd0\\x16\\xbdq\\xab~\\xd9v\\xab\"y\\x98\\x95\\xb5\\xd3\\\\\\xba'
