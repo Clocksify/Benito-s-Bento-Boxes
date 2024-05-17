@@ -9,10 +9,6 @@ with open("Benito-s-Bento-Boxes/NRSE/my_key.txt", "r") as secrets_file:
     if len(key) > 32:
         hash_key = key [:32]
 
-start_int = int(input("What is your starting range? "))
-
-end_int = int(input("What is your ending range? "))
-
 Encrypted_query = []
 
 for j in range(start_int, end_int+1):
