@@ -9,10 +9,9 @@ with open("Benito-s-Bento-Boxes/NRSE/Encrypted_query.txt", "r") as j:
     Encrypted_query = j.readlines()
     print(Encrypted_query)
     for line in Encrypted_query:
-        For_real = line.strip()
-        Response = dic[For_real]
-        Response_list.append(Response)
-        for lines in Response_list:
+        encrypted_attr = line.strip()
+        Response = dic[encrypted_attr]
+        for lines in Response:
             Response1 = lines.strip()
             open('Benito-s-Bento-Boxes/NRSE/Response.txt',"a").write((Response1))
             open('Benito-s-Bento-Boxes/NRSE/Response.txt',"a").write('\n')
