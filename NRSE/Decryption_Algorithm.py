@@ -20,11 +20,11 @@ with open("Benito-s-Bento-Boxes/NRSE/Response.txt") as j:
   with open("Benito-s-Bento-Boxes/NRSE/Answer.txt",'w') as g:
     for line in j:
       ciphertextline = line.rstrip()
-      Stripped = (ciphertextline[2:-1])
-      Cream = bytes(Stripped,'utf-8')
-      Creamer = Cream.decode('unicode-escape').encode('ISO-8859-1')
-      Answer = d_cipher.decrypt(Creamer)
-      my_ans = str(Answer)[2:-1]
+      stripped = (ciphertextline[2:-1])
+      encrypted_response = bytes(stripped,'utf-8')
+      decoded_response = encrypted_response.decode('unicode-escape').encode('ISO-8859-1')
+      decrypted_response = d_cipher.decrypt(decoded_response)
+      my_ans = str(decrypted_response)[2:-1]
       g.write(my_ans+'\n')
 #b'\xed*V\x9fk\x97\xd0\x16\xbdq\xab~\xd9v\xab"y\x98\x95\xb5\xd3\\\xba'
 #b'\\xed*V\\x9fk\\x97\\xd0\\x16\\xbdq\\xab~\\xd9v\\xab"y\\x98\\x95\\xb5\\xd3\\\\\\xba'
