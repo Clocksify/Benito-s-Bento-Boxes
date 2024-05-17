@@ -32,8 +32,6 @@ for i in range(start_int, end_int+1):
     with open(f"Benito-s-Bento-Boxes/NRSE/file{i}.txt", "r") as name:
         name = name.readline().strip().encode('utf-8')
         ciphertext = e_cipher.encrypt(name)
-        print (ciphertext)
-        print (d_cipher.decrypt(ciphertext))
         EQ_to_EQR_dict[hash_attr] = [ciphertext]
 
             # change to if hash_atr in file_bytes with proper use case
