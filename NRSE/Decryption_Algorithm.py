@@ -11,7 +11,6 @@ with open("Benito-s-Bento-Boxes/NRSE/my_key.txt", "r") as secrets_file:
 
 with open('Benito-s-Bento-Boxes/NRSE/iv.txt','rb') as f:
     iv = f.readline()
-    print(iv)
 
 d_cipher = AES.new(hash_key, AES.MODE_CTR, nonce = iv)
 
@@ -22,11 +21,9 @@ with open("Benito-s-Bento-Boxes/NRSE/Response.txt") as j:
     for line in j:
       ciphertextline = line.rstrip()
       Stripped = (ciphertextline[2:-1])
-      print(bytes(Stripped, 'utf-8'))
       Cream = bytes(Stripped,'utf-8')
       Creamer = Cream.decode('unicode-escape').encode('ISO-8859-1')
       Answer = d_cipher.decrypt(Creamer)
-      print(Answer)
       my_ans = str(Answer)[2:-1]
       g.write(my_ans+'\n')
 #b'\xed*V\x9fk\x97\xd0\x16\xbdq\xab~\xd9v\xab"y\x98\x95\xb5\xd3\\\xba'
