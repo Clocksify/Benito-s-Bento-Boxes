@@ -22,11 +22,7 @@ d_cipher = AES.new(hash_key, AES.MODE_CTR, nonce = iv)
 
 EQ_to_EQR_dict = {}
 
-start_int = int(input("What is your starting range? "))
-
-end_int = int(input("What is your ending range? "))
-
-for i in range(start_int, end_int+1):
+for i in range(1, 4):
     hash = SHA256.new(data = bytes(str(i), 'utf-8'))
     hash_attr = hash.hexdigest()
     with open(f"Benito-s-Bento-Boxes/NRSE/file{i}.txt", "r") as name:
