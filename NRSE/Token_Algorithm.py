@@ -11,6 +11,9 @@ with open("Benito-s-Bento-Boxes/NRSE/my_key.txt", "r") as secrets_file:
 
 Encrypted_query = []
 
+start_int = input("What is your starting range? ")
+end_int = input("What is your ending range? ")
+
 for j in range(start_int, end_int+1):
         hash = SHA256.new(data = bytes(str(j), 'utf-8'))
         Encrypted_query_item = hash.hexdigest()
