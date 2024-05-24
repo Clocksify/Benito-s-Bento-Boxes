@@ -1,4 +1,5 @@
 from Crypto.Cipher import AES 
+from Token_Algorithm.py import start_int, end_int
 
 with open("Benito-s-Bento-Boxes/NRSE/my_key.txt", "r") as secrets_file:
     key = secrets_file.readline().strip().encode('utf-8')
@@ -26,6 +27,15 @@ with open("Benito-s-Bento-Boxes/NRSE/Response.txt") as j:
       decrypted_response = d_cipher.decrypt(decoded_response)
       my_ans = str(decrypted_response)[2:-1]
       g.write(my_ans+'\n')
+
+with open("Benito-s-Bento-Boxes/NRSE/Answer.txt",'r+') as f:
+    lines = f.readlines()
+    del lines[linenum]
+    f.seek(0)
+    f.truncate()
+    for number, line in enumerate(lines):
+        if number in [start_int, end_int+1]:
+            fp.write(line)
 #b'\xed*V\x9fk\x97\xd0\x16\xbdq\xab~\xd9v\xab"y\x98\x95\xb5\xd3\\\xba'
 #b'\\xed*V\\x9fk\\x97\\xd0\\x16\\xbdq\\xab~\\xd9v\\xab"y\\x98\\x95\\xb5\\xd3\\\\\\xba'
 #b'\\xed*V\\x9fk\\x97\\xd0\\x16\\xbdq\\xab~\\xd9v\\xab\"y\\x98\\x95\\xb5\\xd3\\\\\\xba'
