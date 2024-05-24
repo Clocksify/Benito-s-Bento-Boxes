@@ -14,7 +14,7 @@ Encrypted_query = []
 start_int = int(input("What is your starting range? "))
 end_int = int(input("What is your ending range? "))
 
-for j in range(start_int, end_int+1):
+for j in range(1, 4):
         hash = SHA256.new(data = bytes(str(j), 'utf-8'))
         Encrypted_query_item = hash.hexdigest()
         Encrypted_query.append(Encrypted_query_item + '\n')
