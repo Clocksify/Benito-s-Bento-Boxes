@@ -19,7 +19,10 @@ iv_dict = {}
 
 for i in range(1, 4):
     with open(f"Benito-s-Bento-Boxes/NRSE/file{i}.txt", "r") as name:
-        attr = 
+        name_str = str(name)
+        attr = re.findall('\d+\.\d+|\d+', name_str)
+
+    
     hash = SHA256.new(data = bytes(str(i), 'utf-8'))
     hash_attr = hash.hexdigest()
     with open(f"Benito-s-Bento-Boxes/NRSE/file{i}.txt", "r") as name:
