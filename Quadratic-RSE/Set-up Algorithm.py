@@ -26,7 +26,7 @@ for i in range(1, 4):
 for a in range(1, 4):
     for key, value in attr_to_file_dict.items():
         if key = a:
-            f"file{a}" += value
+            f"file{a}" += value[a]
     
     hash = SHA256.new(data = bytes(str(i), 'utf-8'))
     hash_attr = hash.hexdigest()
