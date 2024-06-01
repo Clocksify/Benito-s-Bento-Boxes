@@ -5,7 +5,7 @@ import json
 from Crypto.Util.Padding import unpad
 from Crypto.Util.Padding import pad
 
-with open("Benito-s-Bento-Boxes/NRSE/my_key.txt", "r") as secrets_file:
+with open("Benito-s-Bento-Boxes/Quadratic_RSE/my_key.txt", "r") as secrets_file:
     key = secrets_file.readline().strip().encode('utf-8')
 
     if len(key) < 32:
@@ -14,14 +14,12 @@ with open("Benito-s-Bento-Boxes/NRSE/my_key.txt", "r") as secrets_file:
     if len(key) > 32:
         hash_key = key [:32]
 
-# iv = Random.get_random_bytes(10)
-# with open("Benito-s-Bento-Boxes/NRSE/iv.txt",'wb') as f:
-#     f.write()
-
 EQ_to_EQR_dict = {}
 iv_dict = {}
 
 for i in range(1, 4):
+    with open(f"Benito-s-Bento-Boxes/NRSE/file{i}.txt", "r") as name:
+        attr = 
     hash = SHA256.new(data = bytes(str(i), 'utf-8'))
     hash_attr = hash.hexdigest()
     with open(f"Benito-s-Bento-Boxes/NRSE/file{i}.txt", "r") as name:
