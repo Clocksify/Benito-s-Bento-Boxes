@@ -24,7 +24,7 @@ for i in range(1, 4):
             if f"attr{i}" = j:
                 f"file{j}" += f"Benito-s-Bento-Boxes/Quadratic-RSE/file{i}.txt"
 
-enc_query_to_enc_file_dict = {}
+hash_query_to_enc_file_dict = {}
 
 for a in range(4):
     for b in range(4):
@@ -32,10 +32,9 @@ for a in range(4):
             query = a + ", " + b
             hash = SHA256.new(data = bytes(str(query), 'utf-8'))
             hash_query = hash.hexdigest()
-            for j in range(1, 4):
-                if j >= a and j <= b:
-                    f"file{a, b}" += f"file{j}"
-                    enc_query_to_enc_file_dict[hash_query] = file{a, b}
+            for j in range(a, b+1):
+                f"file{a, b}" += f"file{j}"
+                hash_query_to_enc_file_dict[hash_query] = file{a, b}
     
     hash = SHA256.new(data = bytes(str(i), 'utf-8'))
     hash_attr = hash.hexdigest()
