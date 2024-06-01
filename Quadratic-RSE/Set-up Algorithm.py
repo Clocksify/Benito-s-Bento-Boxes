@@ -14,19 +14,20 @@ with open("Benito-s-Bento-Boxes/Quadratic-RSE/my_key.txt", "r") as secrets_file:
     if len(key) > 32:
         hash_key = key [:32]
 
-attr_to_file_dict = {}
 iv_dict = {}
 
 for i in range(1, 4):
     with open(f"Benito-s-Bento-Boxes/Quadratic-RSE/file{i}.txt", "r") as name:
         name_str = str(name)
-        attr = re.findall('\d+\.\d+|\d+', name_str)
-        attr_to_file_dict[attr] = name
+        f"attr{i}" = re.findall('\d+\.\d+|\d+', name_str)
+        for j in range(1, 4):
+            if f"attr{i}" = j:
+                f"file{j}" += f"Benito-s-Bento-Boxes/Quadratic-RSE/file{i}.txt"
 
-for a in range(1, 4):
-    for key, value in attr_to_file_dict.items():
-        if key = a:
-            f"file{a}" += value[a]
+enc_query_to_enc_filedict = {}
+
+for a, b in range(4) and a <= b:
+    
     
     hash = SHA256.new(data = bytes(str(i), 'utf-8'))
     hash_attr = hash.hexdigest()
