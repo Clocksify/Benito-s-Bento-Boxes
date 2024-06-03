@@ -29,8 +29,8 @@ hash_query_to_enc_file_dict = {}
 for a in range(4):
     for b in range(4):
         while a <= b:
-            query = a + ", " + b
-            hash = SHA256.new(data = bytes(str(query), 'utf-8'))
+            query = f"{a},{b}"
+            hash = SHA256.new(data = bytes(query, 'utf-8'))
             hash_query = hash.hexdigest()
             for j in range(a, b+1):
                 f"file{a, b}" += f"file{j}"
