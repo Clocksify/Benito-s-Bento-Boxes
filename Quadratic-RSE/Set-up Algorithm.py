@@ -40,6 +40,16 @@ for a in range(4):
                     ciphertext = e_cipher.encrypt(pad(name, AES.block_size))
                     hash_query_to_enc_file_dict[hash_query] = [ciphertext] 
     
+hash_query_to_enc_file_dict_final = {}
+
+for key, value in hash_query_to_enc_file_dict.items():
+    str_key = str(key)
+    str_list = []
+    for i in range(len(value)):
+        str_value = str(value[i])
+        str_list.append(str_value)
+    hash_query_to_enc_file_dict_final[str_key] = str_list
+    
     hash = SHA256.new(data = bytes(str(i), 'utf-8'))
     hash_attr = hash.hexdigest()
     with open(f"Benito-s-Bento-Boxes/NRSE/file{i}.txt", "r") as name:
