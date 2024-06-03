@@ -38,7 +38,9 @@ for a in range(4):
                         name2.write(str(name3))
                         name2 = name2.readline().strip().encode('utf-8')
                         e_cipher = AES.new(hash_key, AES.MODE_CBC)
-                        ciphertext = e_cipher.encrypt(pad(name, AES.block_size))
+                        ciphertext = e_cipher.encrypt(pad(name2, AES.block_size))
+                        iv = e_cipher.iv
+                        iv_dict[f"{a},{b}"] = iv
                         hash_query_to_enc_file_dict[hash_query] = [ciphertext] 
     
 hash_query_to_enc_file_dict_final = {}
@@ -51,36 +53,7 @@ for key, value in hash_query_to_enc_file_dict.items():
         str_list.append(str_value)
     hash_query_to_enc_file_dict_final[str_key] = str_list
     
-    hash = SHA256.new(data = bytes(str(i), 'utf-8'))
-    hash_attr = hash.hexdigest()
-    with open(f"Benito-s-Bento-Boxes/NRSE/file{i}.txt", "r") as name:
-        name = name.readline().strip().encode('utf-8')
-        e_cipher = AES.new(hash_key, AES.MODE_CBC)
-        ciphertext = e_cipher.encrypt(pad(name, AES.block_size))
-        iv = e_cipher.iv
-        iv_dict[i] = iv
-        EQ_to_EQR_dict[hash_attr] = [ciphertext]
-
-            # change to if hash_atr in file_bytes with proper use case
-
-'''''
-if ciphertext not in EQ_to_EQR_dict[hash_attr]: 
-            EQ_to_EQR_dict[hash_attr].append(ciphertext)
-            print(EQ_to_EQR_dict)
-'''''
-
-# convert all items in dictionary to str
-EQ_to_EQR_dict_final = {}
-for key, value in EQ_to_EQR_dict.items():
-    str_key = str(key)
-    str_list = []
-    for i in range(len(value)):
-        str_value = str(value[i])
-        str_list.append(str_value)
-    EQ_to_EQR_dict_final[str_key] = str_list
-
-print(EQ_to_EQR_dict_final)
-with open("Benito-s-Bento-Boxes/NRSE/EQ_to_EQR_dict.json", "w") as EQ_to_EQR_dict_dest:
-    EQ_to_EQR_dict_final = EQ_to_EQR_dict_dest.write(json.dumps(EQ_to_EQR_dict_final))
+with open("hash_query_to_enc_file_dict.json", "w") as hash_query_to_enc_file_dict_dest:
+    hash_query_to_enc_file_dict_final = hash_query_to_enc_file_dict_dest.write(json.dumps(hash_query_to_enc_file_dict_final))
 #Expected output is a json file EQ_to_EQR_dict.json where there are 3 separate 32 byte hashes that are attr1,2 and 3 respectively
 #However, no files are in the json file's dictionary output
