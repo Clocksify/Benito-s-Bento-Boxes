@@ -33,8 +33,12 @@ for a in range(4):
             hash = SHA256.new(data = bytes(query, 'utf-8'))
             hash_query = hash.hexdigest()
             for j in range(a, b+1):
-                f"file{a, b}" += f"file{j}"
-                hash_query_to_enc_file_dict[hash_query] = file{a, b}
+                f"file{a},{b}" += f"file{j}"
+                with open(f"Benito-s-Bento-Boxes/NRSE/file{a},{b}.txt", "r") as name:
+                    name = name.readline().strip().encode('utf-8')
+                    e_cipher = AES.new(hash_key, AES.MODE_CBC)
+                    ciphertext = e_cipher.encrypt(pad(name, AES.block_size))
+                    hash_query_to_enc_file_dict[hash_query] = [ciphertext] 
     
     hash = SHA256.new(data = bytes(str(i), 'utf-8'))
     hash_attr = hash.hexdigest()
