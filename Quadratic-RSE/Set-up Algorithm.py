@@ -17,12 +17,12 @@ with open("Benito-s-Bento-Boxes/Quadratic-RSE/my_key.txt", "r") as secrets_file:
 iv_dict = {}
 
 for i in range(1, 4):
-    with open(f"Benito-s-Bento-Boxes/Quadratic-RSE/file{i}.txt", "r") as name:
+    with open(f"file{i}.txt", "r") as name:
         name_str = str(name)
-        f"attr{i}" = re.findall('\d+\.\d+|\d+', name_str)
+        f"file{i}_attr" = re.findall('\d+\.\d+|\d+', name_str)
         for j in range(1, 4):
-            if f"attr{i}" = j:
-                f"file{j}" += f"Benito-s-Bento-Boxes/Quadratic-RSE/file{i}.txt"
+            if f"file{i}_attr" = j:
+                f"file{j}" += f"file{i}.txt"
 
 hash_query_to_enc_file_dict = {}
 
@@ -34,7 +34,7 @@ for a in range(4):
             hash_query = hash.hexdigest()
             for j in range(a, b+1):
                 f"file{a},{b}" += f"file{j}"
-                with open(f"Benito-s-Bento-Boxes/NRSE/file{a},{b}.txt", "r") as name:
+                with open(f"file{a},{b}.txt", "r") as name:
                     name = name.readline().strip().encode('utf-8')
                     e_cipher = AES.new(hash_key, AES.MODE_CBC)
                     ciphertext = e_cipher.encrypt(pad(name, AES.block_size))
