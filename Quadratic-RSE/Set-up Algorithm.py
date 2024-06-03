@@ -33,12 +33,13 @@ for a in range(4):
             hash = SHA256.new(data = bytes(query, 'utf-8'))
             hash_query = hash.hexdigest()
             for j in range(a, b+1):
-                f"file{a},{b}" += f"file{j}"
-                with open(f"file{a},{b}.txt", "r") as name:
-                    name = name.readline().strip().encode('utf-8')
-                    e_cipher = AES.new(hash_key, AES.MODE_CBC)
-                    ciphertext = e_cipher.encrypt(pad(name, AES.block_size))
-                    hash_query_to_enc_file_dict[hash_query] = [ciphertext] 
+                with open(f"file{a},{b}", "w+") as name2:
+                    with open(f"file{j}", "r") as name3:
+                        name2.write(str(name3))
+                        name2 = name2.readline().strip().encode('utf-8')
+                        e_cipher = AES.new(hash_key, AES.MODE_CBC)
+                        ciphertext = e_cipher.encrypt(pad(name, AES.block_size))
+                        hash_query_to_enc_file_dict[hash_query] = [ciphertext] 
     
 hash_query_to_enc_file_dict_final = {}
 
