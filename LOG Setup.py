@@ -1,17 +1,6 @@
 H = []
 EDS = {}
 
-for i in range(1, 4):
-    hash = SHA256.new(data = bytes(str(i), 'utf-8'))
-    hash_attr = hash.hexdigest()
-    with open(f"Benito-s-Bento-Boxes/NRSE/file{i}.txt", "r") as name:
-        name = name.readline().strip().encode('utf-8')
-        e_cipher = AES.new(hash_key, AES.MODE_CBC)
-        ciphertext = e_cipher.encrypt(pad(name, AES.block_size))
-        iv = e_cipher.iv
-        iv_dict[i] = iv
-        EQ_to_EQR_dict[hash_attr] = [ciphertext]
-
 def node(start, end):
   if start = end:
     H += (start, start)
@@ -31,9 +20,9 @@ for i in range(1, LOG.max):
   
 for node in H:
   hash = SHA256.new(data = bytes(str(node), 'utf-8'))
-  hash_attr = hash.hexdigest()
+  hash_node = hash.hexdigest()
   for v in range(node[0], node[1]):
-    EDS[node] = f"ciphertext{i}"
+    EDS[hash_node] = f"ciphertext{i}"
   
   
      
