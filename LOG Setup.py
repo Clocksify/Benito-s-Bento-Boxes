@@ -1,3 +1,12 @@
+with open("Benito-s-Bento-Boxes/NRSE/my_key.txt", "r") as secrets_file:
+    key = secrets_file.readline().strip().encode('utf-8')
+
+    if len(key) < 32:
+        hash_key = key.ljust(32, b'\0')
+
+    if len(key) > 32:
+        hash_key = key [:32]
+
 H = []
 EDS = {}
 
