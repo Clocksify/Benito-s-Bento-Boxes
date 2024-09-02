@@ -13,7 +13,7 @@ def node(start, end):
 node(1, LOG.max)
 
 for i in range(1, LOG.max):
-  with open(f"Benito-s-Bento-Boxes/NRSE/file{i}.txt", "r") as file:
+  with open(f"Benito-s-Bento-Boxes/file{i}.txt", "r") as file:
         file = file.readline().strip().encode('utf-8')
         e_cipher = AES.new(hash_key, AES.MODE_CBC)
         f"ciphertext{i}" = e_cipher.encrypt(pad(file, AES.block_size))
