@@ -33,7 +33,7 @@ def over_cover(a, b):
     if node[0] <= a and node[1] >= b:
       nodes_in_range.append(node)
   for node in nodes_in_range:
-    if node[1] - node[0] < minimum range:
+    if node[1] - node[0] < minimum_range:
       minimum_range = node[1] - node[0]
       min_node.clear()
       min_node.append(node)
