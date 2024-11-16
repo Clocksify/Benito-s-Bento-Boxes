@@ -2,6 +2,7 @@ RSEmax = 16
 
 def node(start, end):
     global EDS
+    EDS = []
     if start == end:
         if (start, start) not in EDS:  
             EDS.append((start, start))
@@ -37,20 +38,18 @@ def over_cover(a, b):
       minimum_range = node[1] - node[0]
       min_node.clear()
       min_node.append(node)
-  return min_node
+  return min_node[0]
 
 import random
 import matplotlib.pyplot as plt
 
 def overcover_log_query(num_of_qry):
     all_combinations = {(start, end) for start in range(1, RSEmax + 1) for end in range(start, RSEmax + 1)}
-    
     total_vols = 0
 
     for h in range(100):
         vol_tracker = set()  
         vol_sum = 0
-
         parent = all_combinations.copy()
 
         for v in range(num_of_qry):
