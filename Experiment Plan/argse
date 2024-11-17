@@ -1,0 +1,65 @@
+
+import math
+
+def cover_query(start, end, node_start, node_end):
+    nodes = set()
+    q_range = (start, end)
+    result_dict = {}
+
+    nodes.add((node_start, node_end))
+
+    levels = int(math.log(node_end, 2))
+    level_dict = {levels: {(node_start, node_start), (node_end,node_end)}}
+
+    for level in range(1, levels+1):
+        for i in range(level):
+            node = nodes.pop()
+            node_start = node[0]
+            node_end = node[1]
+            mid = (node_start + node_end) // 2
+            if node_start != node_end:
+                nodes.add((node_start,mid))
+                nodes.add(((node_start + mid) // 2 + 1, (mid + 1 + node_end) // 2))
+                nodes.add((mid + 1, node_end))
+                if level not in level_dict.keys():
+                    level_dict[level] = set()
+                level_dict[level].add((node_start, mid))
+                level_dict[level].add(((node_start + mid) // 2 + 1, (mid + 1 + node_end) // 2))
+                level_dict[level].add((mid + 1, node_end))
+                print(level_dict)
+    level_dict = dict(sorted(level_dict.items()))
+    
+    for level, c_nodes in level_dict.items():
+        node_no = 1
+        key = f"level {level} node {node_no}"
+        if len(result_dict) == 0:
+            for i in range(len(list(c_nodes))):
+                if list(c_nodes)[i][0] >= start and list(c_nodes)[i][1] <= end:
+                    key = f"level {level} node {i}"
+                    result_dict[key] = [list(c_nodes)[i]]
+                continue 
+        else:
+            for node in list(c_nodes):
+                for key, nodes in result_dict.items():
+                    for n in list(nodes):
+                        combined_start = min(n[0], node[0])
+                        combined_end = max(n[1], node[1])
+                        
+                        r = range(node[0], node[1])
+                        no_overlap = n[0] not in r and not[1] not in r 
+                        condition = True
+                        for v in result_dict[key]:
+                            if node[0] in v or node[1] in v:
+                                condition = False
+                                break 
+                        
+                        if combined_start == start and combined_end == end and no_overlap and condition:
+                            result_dict[key].append(node)
+
+        node_no += 1
+
+    r_key, r_val = min(result_dict.items(), key=lambda item: len(item[1]))
+    return r_key, r_val
+
+LOGmax = 8
+print(cover_query(2, 6, 1, LOGmax))
