@@ -12,11 +12,15 @@ for i in range(1, int(math.log(RSEmax, 2))+1):
         levels[i].add(((node[0]+mid)//2+1, (mid+1+node[1])//2))
         levels[i].add((mid+1, node[1]))
 
-def cover(a, b):
+def cover_query(a, b):
+    cover = []
     for i in range(1, int(math.log(RSEmax, 2))+1):
         for node in levels[i]:
             if (node[0] >= a) and (node[1] <= b):
-                if 
+                for (start, end) in cover:
+                    if node[0] > end or node[1] < start:
+                        cover += node
+    return cover
     
     level_dict = dict(sorted(levels.items()))
     level_dict = {key: sorted(value) for key, value in level_dict.items()}
