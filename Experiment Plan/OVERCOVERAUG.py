@@ -5,7 +5,7 @@ RSEmax = 16
 def is_power_of_two(x):
     return (x & (x - 1)) == 0
 
-def overcover(start, end):
+def overcoveraug(start, end):
     diff = (end - start) - 1
     while True:
         diff += 1
