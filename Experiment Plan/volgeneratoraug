@@ -1,0 +1,9 @@
+import math
+a = 1
+RSEmax = 8
+b = 2
+for i in range(int(math.log(RSEmax, 2))-2):
+    a = 2*a + b
+    b += 1
+ans = RSEmax*2-1 + a
+print(ans)
